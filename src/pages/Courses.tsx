@@ -147,28 +147,28 @@ export default function Courses() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="py-8">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h1 className="text-3xl font-bold text-gray-900">Available Courses</h1>
-            <p className="mt-4 text-lg text-gray-600">Explore our wide range of courses and start learning today</p>
+      <div className="py-4 sm:py-6 md:py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-6 sm:mb-8 md:mb-12">
+            <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900">Available Courses</h1>
+            <p className="mt-2 sm:mt-4 text-sm sm:text-base md:text-lg text-gray-600">Explore our wide range of courses and start learning today</p>
           </div>
 
-          <div className="flex flex-col md:flex-row justify-between items-center mb-8">
-            <div className="relative w-full md:w-64 mb-4 md:mb-0">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+          <div className="flex flex-col sm:flex-row justify-between items-center mb-4 sm:mb-6 md:mb-8 space-y-3 sm:space-y-0">
+            <div className="relative w-full sm:w-64">
+              <Search className="absolute left-2 sm:left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-3 w-3 sm:h-4 sm:w-4" />
               <input
                 type="text"
                 placeholder="Search courses..."
-                className="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="w-full pl-7 sm:pl-9 pr-3 sm:pr-4 py-1.5 sm:py-2 text-xs sm:text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
-            <div className="flex items-center space-x-4">
-              <Filter className="h-5 w-5 text-gray-500" />
+            <div className="flex items-center space-x-2 sm:space-x-4">
+              <Filter className="h-3 w-3 sm:h-4 sm:w-4 text-gray-500" />
               <select
-                className="border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="border rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
               >
@@ -180,30 +180,30 @@ export default function Courses() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6 lg:gap-8">
             {filteredCourses.map(course => (
               <div key={course.id} className="bg-white rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-200">
-                <img src={course.image} alt={course.title} className="w-full h-48 object-cover" />
-                <div className="p-6">
-                  <div className="flex justify-between items-start mb-4">
-                    <h3 className="text-xl font-semibold text-gray-900">{course.title}</h3>
-                    <span className="px-2 py-1 text-xs font-semibold text-indigo-600 bg-indigo-100 rounded-full">
+                <img src={course.image} alt={course.title} className="w-full h-36 sm:h-40 md:h-48 object-cover" />
+                <div className="p-3 sm:p-4 md:p-6">
+                  <div className="flex justify-between items-start mb-2 sm:mb-3 md:mb-4">
+                    <h3 className="text-sm sm:text-base md:text-lg font-semibold text-gray-900 line-clamp-2">{course.title}</h3>
+                    <span className="px-1.5 sm:px-2 py-0.5 text-[10px] sm:text-xs font-semibold text-indigo-600 bg-indigo-100 rounded-full ml-2">
                       {course.level}
                     </span>
                   </div>
-                  <p className="text-gray-600 mb-4">{course.description}</p>
-                  <div className="aspect-w-16 aspect-h-9 mb-4">
+                  <p className="text-xs sm:text-sm md:text-base text-gray-600 mb-3 sm:mb-4 line-clamp-2 sm:line-clamp-3">{course.description}</p>
+                  <div className="aspect-w-16 aspect-h-9 mb-3 sm:mb-4">
                     <iframe
                       src={course.videoUrl}
                       title={course.title}
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
-                      className="w-full h-64 rounded-lg"
+                      className="w-full h-36 sm:h-48 md:h-64 rounded-lg"
                     ></iframe>
                   </div>
-                  <div className="flex justify-between items-center mt-4">
-                    <span className="text-sm text-gray-500">{course.duration}</span>
-                    <span className="text-sm font-medium text-indigo-600">{course.category}</span>
+                  <div className="flex justify-between items-center mt-2 sm:mt-3 md:mt-4">
+                    <span className="text-[10px] sm:text-xs md:text-sm text-gray-500">{course.duration}</span>
+                    <span className="text-[10px] sm:text-xs md:text-sm font-medium text-indigo-600">{course.category}</span>
                   </div>
                 </div>
               </div>

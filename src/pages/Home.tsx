@@ -274,46 +274,55 @@ const guidedProjects: Project[] = [
 ];
 
 export default function Home() {
+  const [activeTab, setActiveTab] = useState('courses');
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <div className="bg-indigo-600 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
-          <div className="flex-1">
-            <h1 className="text-5xl font-bold mb-6">Grow Your Skill Set</h1>
-            <div className="space-y-4 text-xl">
-              <p>Master new skills with our expert-led courses and take charge of your future.
-              Gain in-depth knowledge through engaging, hands-on learning experiences.
-              Learn from industry professionals who bring real-world insights to every lesson.
-              Whether you're advancing your career or exploring a new passion, we've got you covered.
-              Achieve your goals with confidence and unlock your full potential today.</p>
+      <div className="bg-indigo-600 py-6 sm:py-8 md:py-12 lg:py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
+              Learn New Skills Online with Top Educators
+            </h1>
+            <p className="mt-2 sm:mt-4 text-xs sm:text-sm md:text-base lg:text-lg text-indigo-100 max-w-3xl mx-auto">
+              Access thousands of courses from expert instructors worldwide. Start learning today and advance your career.
+            </p>
+            <div className="mt-4 sm:mt-6 md:mt-8">
+              <a
+                href="#featured-courses"
+                className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 border border-transparent text-xs sm:text-sm md:text-base font-medium rounded-md shadow-sm text-indigo-600 bg-white hover:bg-indigo-50 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              >
+                Explore Courses
+              </a>
             </div>
-          </div>
-          <div className="flex-1 ml-8">
-            <img 
-              src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1000" 
-              alt="Learning" 
-              className="rounded-lg shadow-xl"
-            />
           </div>
         </div>
       </div>
 
-      {/* Featured Courses */}
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        <h2 className="text-2xl font-semibold mb-6">Personalized Specializations for You</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {featuredCourses.map(course => (
-            <CourseCard key={course.id} course={course} />
-          ))}
+      {/* Featured Courses Section */}
+      <div id="featured-courses" className="py-4 sm:py-6 md:py-8 lg:py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-6 sm:mb-8 md:mb-12">
+            <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-900">Featured Courses</h2>
+            <p className="mt-2 sm:mt-4 text-xs sm:text-sm md:text-base lg:text-lg text-gray-600">Discover our most popular courses</p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
+            {featuredCourses.map((course) => (
+              <div key={course.id} className="transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                <CourseCard course={course} />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
       {/* Popular Certificates */}
-      <div className="bg-white py-12">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-2xl font-semibold mb-6">Most Popular Certificates</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="bg-white py-4 sm:py-6 md:py-8 lg:py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold mb-2 sm:mb-3 md:mb-4 text-center md:text-left">Most Popular Certificates</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 md:gap-4 lg:gap-6">
             {popularCertificates.map(certificate => (
               <CourseCard key={certificate.id} course={certificate} />
             ))}
@@ -322,9 +331,9 @@ export default function Home() {
       </div>
 
       {/* Guided Projects */}
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        <h2 className="text-2xl font-semibold mb-6">Guided Projects for You</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 md:py-8 lg:py-12">
+        <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold mb-2 sm:mb-3 md:mb-4 text-center md:text-left">Guided Projects for You</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 md:gap-4 lg:gap-6">
           {guidedProjects.map(project => (
             <CourseCard key={project.id} course={project} />
           ))}
@@ -332,37 +341,37 @@ export default function Home() {
       </div>
 
       {/* Contact Section */}
-      <footer className="bg-gray-800 text-white py-12">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div>
-              <h3 className="text-xl font-semibold mb-4">Contact Us</h3>
-              <div className="space-y-2">
-                <p className="flex items-center">
-                  <Mail className="h-5 w-5 mr-2" />
+      <footer className="bg-gray-800 text-white py-4 sm:py-6 md:py-8 lg:py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+            <div className="text-center md:text-left">
+              <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold mb-2 sm:mb-3">Contact Us</h3>
+              <div className="space-y-1 sm:space-y-2">
+                <p className="flex items-center justify-center md:justify-start text-xs sm:text-sm md:text-base">
+                  <Mail className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 mr-1 sm:mr-2" />
                   contact@learnhub.com
                 </p>
-                <p className="flex items-center">
-                  <Phone className="h-5 w-5 mr-2" />
+                <p className="flex items-center justify-center md:justify-start text-xs sm:text-sm md:text-base">
+                  <Phone className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 mr-1 sm:mr-2" />
                   +1 (555) 123-4567
                 </p>
-                <p className="flex items-center">
-                  <MapPin className="h-5 w-5 mr-2" />
+                <p className="flex items-center justify-center md:justify-start text-xs sm:text-sm md:text-base">
+                  <MapPin className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 mr-1 sm:mr-2" />
                   123 Learning Street, Education City
                 </p>
               </div>
             </div>
-            <div>
-              <h3 className="text-xl font-semibold mb-4">Quick Links</h3>
-              <ul className="space-y-2">
-                <li><a href="/about" className="hover:text-indigo-400">About Us</a></li>
-                <li><a href="/careers" className="hover:text-indigo-400">Careers</a></li>
-                <li><a href="/blog" className="hover:text-indigo-400">Blog</a></li>
+            <div className="text-center md:text-left">
+              <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold mb-2 sm:mb-3">Quick Links</h3>
+              <ul className="space-y-1 sm:space-y-2">
+                <li><a href="/about" className="hover:text-indigo-400 text-xs sm:text-sm md:text-base">About Us</a></li>
+                <li><a href="/careers" className="hover:text-indigo-400 text-xs sm:text-sm md:text-base">Careers</a></li>
+                <li><a href="/blog" className="hover:text-indigo-400 text-xs sm:text-sm md:text-base">Blog</a></li>
               </ul>
             </div>
-            <div>
-              <h3 className="text-xl font-semibold mb-4">Follow Us</h3>
-              <div className="flex space-x-4">
+            <div className="text-center md:text-left">
+              <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold mb-2 sm:mb-3">Follow Us</h3>
+              <div className="flex space-x-3 sm:space-x-4 justify-center md:justify-start">
                 {/* Add social media icons/links here */}
               </div>
             </div>
