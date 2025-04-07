@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import CourseCard from '../components/CourseCard';
 import { Course, Certificate, Project } from '../types';
 import { Mail, Phone, MapPin } from 'lucide-react';
@@ -274,7 +274,15 @@ const guidedProjects: Project[] = [
 ];
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState('courses');
+  const navigate = useNavigate();
+
+  const handleViewCourse = (courseId: string) => {
+    navigate(`/course-details/${courseId}`);
+  };
+
+  const handleProjectClick = (projectId: string) => {
+    navigate(`/project/${projectId}`);
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -310,7 +318,11 @@ export default function Home() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
             {featuredCourses.map((course) => (
-              <div key={course.id} className="transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
+              <div 
+                key={course.id} 
+                className="transform transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer"
+                onClick={() => handleViewCourse(course.id)}
+              >
                 <CourseCard course={course} />
               </div>
             ))}
@@ -324,19 +336,71 @@ export default function Home() {
           <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold mb-2 sm:mb-3 md:mb-4 text-center md:text-left">Most Popular Certificates</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 md:gap-4 lg:gap-6">
             {popularCertificates.map(certificate => (
-              <CourseCard key={certificate.id} course={certificate} />
+              <div 
+                key={certificate.id} 
+                className="transform transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer"
+                onClick={() => handleViewCourse(certificate.id)}
+              >
+                <CourseCard course={certificate} />
+              </div>
             ))}
           </div>
         </div>
       </div>
 
       {/* Guided Projects */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 md:py-8 lg:py-12">
-        <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold mb-2 sm:mb-3 md:mb-4 text-center md:text-left">Guided Projects for You</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 md:gap-4 lg:gap-6">
-          {guidedProjects.map(project => (
-            <CourseCard key={project.id} course={project} />
-          ))}
+      <div className="bg-white py-12 sm:py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+              Guided Projects for You
+            </h2>
+            <p className="mt-3 max-w-2xl mx-auto text-xl text-gray-500 sm:mt-4">
+              Build real-world projects with step-by-step guidance
+            </p>
+          </div>
+          <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {guidedProjects.map((project) => (
+              <div 
+                key={project.id} 
+                className="group relative bg-white rounded-lg shadow-md overflow-hidden cursor-pointer transform transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                onClick={() => handleProjectClick(project.id)}
+              >
+                <div className="relative h-48">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
+                <div className="p-6">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800">
+                      {project.category}
+                    </span>
+                    <span className="text-sm text-gray-500">{project.duration}</span>
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900 group-hover:text-indigo-600 transition-colors duration-300">
+                    {project.title}
+                  </h3>
+                  <p className="mt-2 text-sm text-gray-500 line-clamp-2">
+                    {project.description}
+                  </p>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {project.technologies.map((tech, index) => (
+                      <span
+                        key={index}
+                        className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 

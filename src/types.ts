@@ -7,6 +7,16 @@ export interface Course {
   videoUrl: string;
   duration: string;
   level: string;
+  modules?: CourseModule[];
+  testUrl?: string;
+}
+
+export interface CourseModule {
+  id: string;
+  title: string;
+  description: string;
+  duration: string;
+  completed?: boolean;
 }
 
 export interface Certificate {

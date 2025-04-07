@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { Course } from '../types';
-import { Search, Filter } from 'lucide-react';
+import { Search, Filter, Eye } from 'lucide-react';
 import ContactBar from '../components/ContactBar';
+import { useNavigate } from 'react-router-dom';
 
 const courses: Course[] = [
   {
@@ -139,11 +140,17 @@ const categories = [
 export default function Courses() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const navigate = useNavigate();
 
   const filteredCourses = courses.filter(course => 
     course.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
     (selectedCategory === 'all' || course.category === selectedCategory)
   );
+
+  const handleViewCourse = (courseId: string) => {
+    // Navigate to the course details page
+    navigate(`/course-details/${courseId}`);
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -192,15 +199,18 @@ export default function Courses() {
                     </span>
                   </div>
                   <p className="text-xs sm:text-sm md:text-base text-gray-600 mb-3 sm:mb-4 line-clamp-2 sm:line-clamp-3">{course.description}</p>
-                  <div className="aspect-w-16 aspect-h-9 mb-3 sm:mb-4">
-                    <iframe
-                      src={course.videoUrl}
-                      title={course.title}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      className="w-full h-36 sm:h-48 md:h-64 rounded-lg"
-                    ></iframe>
+                  
+                  {/* Action Buttons */}
+                  <div className="flex space-x-2 mb-3 sm:mb-4">
+                    <button 
+                      onClick={() => handleViewCourse(course.id)}
+                      className="flex-1 flex items-center justify-center bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition-colors duration-300"
+                    >
+                      <Eye className="h-4 w-4 mr-1" />
+                      <span className="text-xs sm:text-sm font-medium">View Course</span>
+                    </button>
                   </div>
+                  
                   <div className="flex justify-between items-center mt-2 sm:mt-3 md:mt-4">
                     <span className="text-[10px] sm:text-xs md:text-sm text-gray-500">{course.duration}</span>
                     <span className="text-[10px] sm:text-xs md:text-sm font-medium text-indigo-600">{course.category}</span>
