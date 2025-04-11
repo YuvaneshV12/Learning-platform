@@ -856,7 +856,6 @@ export default function CourseDetails() {
     <div className="min-h-screen bg-gray-50">
       <div className="py-4 sm:py-6 md:py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Back button */}
           <button 
             onClick={() => navigate('/courses')}
             className="flex items-center text-indigo-600 hover:text-indigo-800 mb-4 transition-colors duration-300"
@@ -865,7 +864,6 @@ export default function CourseDetails() {
             <span className="text-sm font-medium">Back to Courses</span>
           </button>
           
-          {/* Course header */}
           <div className="bg-white rounded-lg shadow-md overflow-hidden mb-6">
             <div className="relative">
               <img src={course.image} alt={course.title} className="w-full h-48 sm:h-64 object-cover" />
@@ -891,11 +889,8 @@ export default function CourseDetails() {
             </div>
           </div>
           
-          {/* Course content */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {/* Main content */}
             <div className="lg:col-span-2">
-              {/* Video container */}
               <div className="bg-white rounded-lg shadow-md overflow-hidden mb-6">
                 <div className="aspect-w-16 aspect-h-9">
                   <iframe
@@ -907,8 +902,6 @@ export default function CourseDetails() {
                   ></iframe>
                 </div>
               </div>
-              
-              {/* Course description */}
               <div className="bg-white rounded-lg shadow-md p-4 sm:p-6 mb-6">
                 <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">Course Description</h2>
                 <p className="text-sm sm:text-base text-gray-600">
@@ -916,7 +909,6 @@ export default function CourseDetails() {
                 </p>
               </div>
               
-              {/* Course modules */}
               <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
                 <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">Course Modules</h2>
                 <div className="space-y-3">
@@ -946,10 +938,7 @@ export default function CourseDetails() {
                 </div>
               </div>
             </div>
-            
-            {/* Sidebar */}
             <div className="lg:col-span-1">
-              {/* Take test button */}
               <div className="bg-white rounded-lg shadow-md p-4 sm:p-6 mb-6">
                 <h2 className="text-lg font-bold text-gray-900 mb-3">Assessment</h2>
                 <p className="text-sm text-gray-600 mb-4">
@@ -962,8 +951,6 @@ export default function CourseDetails() {
                   <span className="font-medium">Take Test</span>
                 </button>
               </div>
-              
-              {/* Course info */}
               <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
                 <h2 className="text-lg font-bold text-gray-900 mb-3">Course Information</h2>
                 <div className="space-y-3">
@@ -997,4 +984,4 @@ export default function CourseDetails() {
       <ContactBar />
     </div>
   );
-} 
+}
